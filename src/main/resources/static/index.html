@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Wizard Tutorial: Add A New Step</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+		<!-- Top menu -->
+		<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+                    <a href="admin.html"><i class="fa fa-sign-in"></i></a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<span class="li-social">
+								<a href="https://www.facebook.com/pages/okna" target="_blank"><i class="fa fa-facebook"></i></a>
+								<a href="https://twitter.com/okna" target="_blank"><i class="fa fa-twitter"></i></a>
+								<a href="mailto:zan.ograjsek@okna.com?Subject=Povprasevanje" target="_blank"><i class="fa fa-envelope"></i></a>
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1>Nakup <strong>OKNA</strong> hitro in enostavno</h1>
+                        <div class="description">
+                       	    <p>S pomocjo spletne strani do hitre ponudbe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 form-box">
+                    	<form role="form" action="" method="post" class="f1">
+
+                    		<h3>Izpolni obrazec za predracun</h3>
+                    		<p>Predracun je simbolni.</p>
+                    		<div class="f1-steps">
+                    			<div class="f1-progress">
+                    			    <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                    			</div>
+                    			<div class="f1-step active">
+                    				<div class="f1-step-icon"><i class="fa fa-windows"></i></div>
+                    				<p>OKNA</p>
+                    			</div>
+                    			<div class="f1-step">
+                    				<div class="f1-step-icon"><i class="fa fa-sign-language"></i></div>
+                    				<p>STORITVE</p>
+                    			</div>
+                    			<div class="f1-step">
+                    				<div class="f1-step-icon"><i class="fa fa-file-text"></i></div>
+                    				<p>IZRACUN</p>
+                    			</div>
+                    		</div>
+
+                    		<fieldset>
+                                <div class="form-group">
+                                    <h4 class="label">Vnos okna</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="quantity">Kolicina</label>
+                                            <input type="number" name="f1-first-name" placeholder="1" class="form-control-normal" id="quantity">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="width">Sirina v cm</label>
+                                            <input type="text" name="f1-last-name" placeholder="100" class="form-control-normal" id="width">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="height">Visina</label>
+                                            <input type="text" name="f1-last-name" placeholder="100" class="form-control-normal" id="height">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="glazing">Zasteklitev</label>
+                                          <select name="glazing" id="glazing" class="form-control">
+                                              <option value="DOUBLE">Dvojna</option>
+                                              <option value="TRIPLE">Trojna</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="color">Barva</label>
+                                          <select name="color" id="color" class="form-control">
+                                              <option value="WHITE_WHITE">Bela/Bela</option>
+                                              <option value="DECOR_WHITE">Dekor/Bela</option>
+                                              <option value="DECOR_DECOR">Dekor/Dekor</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="type">Vrsta okna</label>
+                                          <select name="type" id="type" class="form-control">
+                                              <option value="ONE_PIECE">Enodelno</option>
+                                              <option value="TWO_PIECE">Dvokrilno</option>
+                                              <option value="FIX">Fiksno</option>
+                                              <option value="SLIDE">Drsno</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="shelf">Polica</label>
+                                            <select name="shelf" id="shelf" class="form-control">
+                                                <option value="NONE">Brez</option>
+                                                <option value="INNER">Notranja</option>
+                                                <option value="OUTER">Zunanja</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="blinds">Sencila</label>
+                                          <select name="blinds" id="blinds" class="form-control">
+                                              <option value="NONE">Brez</option>
+                                              <option value="OUTDOOR_ROLLERS">Zunanje rolete</option>
+                                              <option value="SHUTTER_ROLLERS">Nadokenske rolete</option>
+                                              <option value="HIDDEN_ROLLERS">Podometne rolete</option>
+                                              <option value="OUTDOOR_BLINDS">Zunanje zaluzije</option>
+                                              <option value="INDOOR_BLINDS">Notranje zaluzije</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="mosquito">Komarnik</label>
+                                          <select name="mosquito" id="mosquito" class="form-control">
+                                              <option value="NONE">Brez</option>
+                                              <option value="ROLLER">Rolo</option>
+                                              <option value="FIX">Fiksen</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="f1-buttons">
+                                    <button type="button" class="btn btn-add-window">Dodaj</button>
+                                </div>
+                                <div class="form-group">
+                                    <h4 class="label">Seznam</h4>
+                                </div>
+                                <div class="form-group">
+                                    <table class="table table-dark">
+                                        <thead class="window-list-header">
+                                            <tr>
+                                                <th scope="col">Kolicina</th>
+                                                <th scope="col">Dimenzija</th>
+                                                <th scope="col">Zasteklitev</th>
+                                                <th scope="col">Barva</th>
+                                                <th scope="col">Vrsta</th>
+                                                <th scope="col">Polica</th>
+                                                <th scope="col">Sencila</th>
+                                                <th scope="col">Komarnik</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="window-list">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="error-step-1">
+                                </div>
+                                <div class="f1-buttons">
+                                    <button type="button" class="btn btn-next">Naprej</button>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <h4 class="label">Ponudbe storitev</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <input type="checkbox" class="form-check-input" id="deinstallation">
+                                            <label class="form-check-label" for="deinstallation">Demontaza</label>
+                                        </div>
+                                        <div class="form-group col-md-9">
+                                            <p>Moznost demontaze starih oken</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <input type="checkbox" class="form-check-input" id="disposal">
+                                            <label class="form-check-label" for="disposal">Odvoz</label>
+                                        </div>
+                                        <div class="form-group col-md-9">
+                                            <p>Moznost odvoza starih oken</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <input type="checkbox" class="form-check-input" id="shipping">
+                                            <label class="form-check-label" for="shipping">Dostava</label>
+                                        </div>
+                                        <div class="form-group col-md-9">
+                                            <p>Moznost dostave novih oken</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <input type="checkbox" class="form-check-input" id="installation">
+                                            <label class="form-check-label" for="installation">Montaza</label>
+                                        </div>
+                                        <div class="form-group col-md-9">
+                                            <p>Moznost montaze novih oken</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <input type="checkbox" class="form-check-input" id="finalization">
+                                            <label class="form-check-label" for="finalization">Zakljucna dela</label>
+                                        </div>
+                                        <div class="form-group col-md-9">
+                                            <p>Moznost izvedbe zakljucnih del</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row distance-row">
+                                        <div class="form-group col-md-3">
+                                            <input type="number" style="width: 50%" name="f1-first-name" class="form-control-normal" id="distance">
+                                        </div>
+                                        <div class="form-group col-md-9">
+                                            <p>Stevilo kilometrov od podjetja do tocke prevzema.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="error-step-2">
+                                </div>
+                                <div class="f1-buttons">
+                                    <button type="button" class="btn btn-previous">Nazaj</button>
+                                    <button type="button" class="btn btn-next">Naprej</button>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <h4 class="label">Povzetek</h4>
+                                </div>
+                                <div class="form-group">
+                                    <table class="table table-dark">
+                                        <tbody class="calculation">
+                                            <tr>
+                                                <td>Okna</td>
+                                                <td>1250 EUR</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Storitve</td>
+                                                <td>1250 EUR</td>
+                                            </tr>
+                                            <tr>
+                                                <td>DDV</td>
+                                                <td>20%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Skupno</td>
+                                                <td>3000 EUR</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <label class="email" for="email">Email</label>
+                                    <input type="text" name="f1-first-name" placeholder="tvoj@naslov.si" style="width:40%" id="email">
+                                </div>
+                                <div class="error-step-3">
+                                </div>
+                                <div class="f1-buttons">
+                                    <button type="button" class="btn btn-previous">Nazaj</button>
+                                    <button type="button" class="btn btn-submit">Poslji</button>
+                                </div>
+                            </fieldset>
+
+                    	</form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>
