@@ -1,5 +1,11 @@
 package xyz.blackmonster.window.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import xyz.blackmonster.window.types.Blinds;
 import xyz.blackmonster.window.types.Color;
 import xyz.blackmonster.window.types.Glazing;
@@ -10,9 +16,17 @@ import xyz.blackmonster.window.types.WindowType;
 /**
  * Window configuration
  */
+@Entity
 public class Window {
 
+	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
 	private String uuid;
+
 	private int quantity;
 	private int width;
 	private int height;

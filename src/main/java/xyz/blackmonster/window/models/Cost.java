@@ -6,10 +6,10 @@ package xyz.blackmonster.window.models;
 public class Cost {
 
 	private String uuid;
-	private int windowCharge;
-	private int serviceCharge;
+	private int windowCost;
+	private int serviceCost;
 	private int valueAddedTaxPercentage;
-	private int totalCharge;
+	private int totalCost;
 
 	public String getUuid() {
 		return uuid;
@@ -19,20 +19,20 @@ public class Cost {
 		this.uuid = uuid;
 	}
 
-	public int getWindowCharge() {
-		return windowCharge;
+	public int getWindowCost() {
+		return windowCost;
 	}
 
-	public void setWindowCharge(int windowCharge) {
-		this.windowCharge = windowCharge;
+	public void setWindowCost(int windowCost) {
+		this.windowCost = windowCost;
 	}
 
-	public int getServiceCharge() {
-		return serviceCharge;
+	public int getServiceCost() {
+		return serviceCost;
 	}
 
-	public void setServiceCharge(int serviceCharge) {
-		this.serviceCharge = serviceCharge;
+	public void setServiceCost(int serviceCost) {
+		this.serviceCost = serviceCost;
 	}
 
 	public int getValueAddedTaxPercentage() {
@@ -43,11 +43,11 @@ public class Cost {
 		this.valueAddedTaxPercentage = valueAddedTaxPercentage;
 	}
 
-	public int getTotalCharge() {
-		return totalCharge;
+	public int getTotalCost() {
+		return totalCost;
 	}
 
-	public void setTotalCharge(int totalCharge) {
-		this.totalCharge = totalCharge;
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
 	}
 }

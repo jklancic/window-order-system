@@ -23,10 +23,10 @@ function bar_progress(progress_line_object, direction) {
 
 function cost_update(cost) {
 
-	$('#windowCharge').html(cost.windowCharge);
-	$('#serviceCharge').html(cost.serviceCharge);
+	$('#windowCost').html(cost.windowCost);
+	$('#serviceCost').html(cost.serviceCost);
 	$('#valueAddedTaxPercentage').html(cost.valueAddedTaxPercentage);
-	$('#totalCharge').html(cost.totalCharge + ' &euro;');
+	$('#totalCost').html(cost.totalCost + ' &euro;');
 }
 
 function retrieve_window() {

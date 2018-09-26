@@ -15,10 +15,10 @@ public class CostConverter {
 	 */
 	public static CostWS toWS(Cost cost) {
 		CostWS costWS = new CostWS();
-		costWS.setWindowCharge(cost.getWindowCharge());
-		costWS.setServiceCharge(cost.getServiceCharge());
+		costWS.setWindowCost(cost.getWindowCost());
+		costWS.setServiceCost(cost.getServiceCost());
 		costWS.setValueAddedTaxPercentage(cost.getValueAddedTaxPercentage());
-		costWS.setTotalCharge(cost.getTotalCharge());
+		costWS.setTotalCost(cost.getTotalCost());
 
 		return costWS;
 	}

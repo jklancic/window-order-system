@@ -8,28 +8,28 @@ import javax.validation.constraints.Positive;
 public class CostWS {
 
 	@Positive
-	private int windowCharge;
+	private int windowCost;
 	@Positive
-	private int serviceCharge;
+	private int serviceCost;
 	@Positive
 	private int valueAddedTaxPercentage;
 	@Positive
-	private int totalCharge;
+	private int totalCost;
 
-	public int getWindowCharge() {
-		return windowCharge;
+	public int getWindowCost() {
+		return windowCost;
 	}
 
-	public void setWindowCharge(int windowCharge) {
-		this.windowCharge = windowCharge;
+	public void setWindowCost(int windowCost) {
+		this.windowCost = windowCost;
 	}
 
-	public int getServiceCharge() {
-		return serviceCharge;
+	public int getServiceCost() {
+		return serviceCost;
 	}
 
-	public void setServiceCharge(int serviceCharge) {
-		this.serviceCharge = serviceCharge;
+	public void setServiceCost(int serviceCost) {
+		this.serviceCost = serviceCost;
 	}
 
 	public int getValueAddedTaxPercentage() {
@@ -40,11 +40,11 @@ public class CostWS {
 		this.valueAddedTaxPercentage = valueAddedTaxPercentage;
 	}
 
-	public int getTotalCharge() {
-		return totalCharge;
+	public int getTotalCost() {
+		return totalCost;
 	}
 
-	public void setTotalCharge(int totalCharge) {
-		this.totalCharge = totalCharge;
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
 	}
 }

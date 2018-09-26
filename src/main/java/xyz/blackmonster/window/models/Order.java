@@ -2,12 +2,26 @@ package xyz.blackmonster.window.models;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * Window order
  */
+@Entity
 public class Order {
 
+	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
 	private String uuid;
+
 	private List<Window> windows;
 	private Service service;
 	private Cost cost;

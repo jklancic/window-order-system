@@ -1,11 +1,25 @@
 package xyz.blackmonster.window.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * Window service
  */
+@Entity
 public class Service {
 
+	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
 	private String uuid;
+
 	private boolean deinstallation;
 	private boolean disposal;
 	private boolean shipping;
