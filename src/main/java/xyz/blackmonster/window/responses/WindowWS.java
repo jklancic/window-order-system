@@ -1,4 +1,4 @@
-package xyz.blackmonster.window.models;
+package xyz.blackmonster.window.responses;
 
 import xyz.blackmonster.window.types.Blinds;
 import xyz.blackmonster.window.types.Color;
@@ -8,11 +8,10 @@ import xyz.blackmonster.window.types.Shelf;
 import xyz.blackmonster.window.types.WindowType;
 
 /**
- * Window configuration
+ * Rest response body for window configuration
  */
-public class Window {
+public class WindowWS {
 
-	private String uuid;
 	private int quantity;
 	private int width;
 	private int height;
@@ -22,14 +21,6 @@ public class Window {
 	private Shelf shelf;
 	private Blinds blinds;
 	private Mosquito mosquito;
-
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
 
 	public int getQuantity() {
 		return quantity;

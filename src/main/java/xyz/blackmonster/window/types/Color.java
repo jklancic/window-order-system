@@ -1,4 +1,4 @@
-package xyz.blackmonster.window.models.types;
+package xyz.blackmonster.window.types;
 
 /**
  * Window color
