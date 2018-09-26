@@ -1,14 +1,21 @@
 package xyz.blackmonster.window.responses;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Rest response body for window service
  */
 public class ServiceWS {
 
+	@NotNull
 	private boolean deinstallation;
+	@NotNull
 	private boolean disposal;
+	@NotNull
 	private boolean shipping;
+	@NotNull
 	private boolean installation;
+	@NotNull
 	private boolean finalization;
 	private int distance;
 

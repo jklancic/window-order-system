@@ -21,6 +21,14 @@ function bar_progress(progress_line_object, direction) {
 	progress_line_object.attr('style', 'width: ' + new_value + '%;').data('now-value', new_value);
 }
 
+function cost_update(cost) {
+
+	$('#windowCharge').html(cost.windowCharge);
+	$('#serviceCharge').html(cost.serviceCharge);
+	$('#valueAddedTaxPercentage').html(cost.valueAddedTaxPercentage);
+	$('#totalCharge').html(cost.totalCharge + ' &euro;');
+}
+
 function retrieve_window() {
 
 	// retrieving window data
@@ -47,6 +55,24 @@ function retrieve_window() {
 	$('#mosquito').val($('#mosquito option:first').val());
 
 	return newWindow;
+}
+
+function retrieve_service() {
+
+	var service = {};
+	service.deinstallation = $('#deinstallation').is(':checked');
+	service.disposal = $('#disposal').is(':checked');
+	service.shipping = $('#shipping').is(':checked');
+	service.installation = $('#installation').is(':checked');
+	service.finalization = $('#finalization').is(':checked');
+	service.distance = $('#distance').val();
+
+	return service;
+}
+
+function retrieve_email() {
+
+	return $('#email').val();
 }
 
 function add_window(newWindow) {
@@ -108,21 +134,34 @@ jQuery(document).ready(function() {
 
     	// fields validation
     	if (step_index === 0 && order.windows.length === 0) {
-			next_step = false;
-			show_error('div.error-step-1', 'Seznam oken je prazen');
-		} else if (step_index == 1) {
-			if (($('#shipping').is(':checked')) && (!$('#distance').val() || $('#distance').val() == "")) {
 				next_step = false;
-				show_error('div.error-step-2', 'Vnesi kilometrino, da se lahko izracunajo stroski z dostavo.');
+				show_error('div.error-step-1', 'Seznam oken je prazen');
+			} else if (step_index == 1) {
+				if (($('#shipping').is(':checked')) && (!$('#distance').val() || $('#distance').val() == "")) {
+					next_step = false;
+					show_error('div.error-step-2', 'Vnesi kilometrino, da se lahko izracunajo stroski z dostavo.');
+				}
+				order.service = retrieve_service();
+				$.ajax({
+					type: 'POST',
+					async: false,
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					url: '/api/order/calculate',
+					data: JSON.stringify(order),
+					dataType: 'json'
+				}).success(function(cost) {
+					cost_update(cost);
+				}).error(function() {
+					next_step = false;
+				});
 			}
-			//TODO: services are added and makes POST call to sent order
-		} else if (step_index == 2) {
-			//TODO: check order was sent and has id
-		}
 
     	// fields validation
     	if( next_step ) {
-			step_index++;
+				step_index++;
     		parent_fieldset.fadeOut(400, function() {
     			// change icons
     			current_active_step.removeClass('active').addClass('activated').next().addClass('active');
@@ -159,13 +198,27 @@ jQuery(document).ready(function() {
     // submit
     $('.f1').on('submit', function(e) {
 
+    	var email = retrieve_email();
+			var emailValidation = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
     	// fields validation
-		if (!$('#email').val() || $('#email').val() == "") {
-			show_error('div.error-step-3', 'Elektronski naslov manjka.');
-			return;
-		}
+			if (!email || email == '' || !(emailValidation.test(email))) {
+				show_error('div.error-step-3', 'Elektronski naslov manjka.');
+				return;
+			}
 
-		//TODO: Add API call to sent the order per email by passing order ID
+			order.email = email;
+			$.ajax({
+				type: 'POST',
+				async: false,
+				url: '/api/order/send',
+				data: order,
+				dataType: 'json'
+			}).success(function(cost) {
+				cost_update(cost);
+			}).error(function() {
+				next_step = false;
+			});
+			//TODO: Add API call to sent the order per email by passing order ID
     });
 
 	$('.btn-add-window').on('click', function() {
@@ -173,11 +226,11 @@ jQuery(document).ready(function() {
 		var next_step = true;
 
 		// fields validation
-        parent_fieldset.find('input[type="text"]').each(function() {
-            if( $(this).val() == "" ) {
-                next_step = false;
-            }
-        });
+		parent_fieldset.find('input[type="text"]').each(function() {
+				if( $(this).val() == "" ) {
+						next_step = false;
+				}
+		});
 
 		if (next_step) {
 			var newWindow = retrieve_window();

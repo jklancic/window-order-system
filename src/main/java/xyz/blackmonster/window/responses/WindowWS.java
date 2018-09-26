@@ -1,5 +1,8 @@
 package xyz.blackmonster.window.responses;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 import xyz.blackmonster.window.types.Blinds;
 import xyz.blackmonster.window.types.Color;
 import xyz.blackmonster.window.types.Glazing;
@@ -12,14 +15,23 @@ import xyz.blackmonster.window.types.WindowType;
  */
 public class WindowWS {
 
+	@Positive
 	private int quantity;
+	@Positive
 	private int width;
+	@Positive
 	private int height;
+	@NotNull
 	private Glazing glazing;
+	@NotNull
 	private Color color;
+	@NotNull
 	private WindowType type;
+	@NotNull
 	private Shelf shelf;
+	@NotNull
 	private Blinds blinds;
+	@NotNull
 	private Mosquito mosquito;
 
 	public int getQuantity() {

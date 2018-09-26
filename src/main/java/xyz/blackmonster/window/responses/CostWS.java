@@ -1,13 +1,19 @@
 package xyz.blackmonster.window.responses;
 
+import javax.validation.constraints.Positive;
+
 /**
  * Rest response body for total costs
  */
 public class CostWS {
 
+	@Positive
 	private int windowCharge;
+	@Positive
 	private int serviceCharge;
+	@Positive
 	private int valueAddedTaxPercentage;
+	@Positive
 	private int totalCharge;
 
 	public int getWindowCharge() {

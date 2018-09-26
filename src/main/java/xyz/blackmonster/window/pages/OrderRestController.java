@@ -1,15 +1,21 @@
 package xyz.blackmonster.window.pages;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import xyz.blackmonster.window.responses.CostWS;
 import xyz.blackmonster.window.responses.OrderWS;
 import xyz.blackmonster.window.services.OrderService;
 
 @RestController
-@RequestMapping("api/order")
+@RequestMapping("/api/order")
 public class OrderRestController {
 
 	private OrderService orderService;
@@ -19,13 +25,16 @@ public class OrderRestController {
 		this.orderService = orderService;
 	}
 
-	@RequestMapping("calculate")
-	public OrderWS calculateCost(@RequestBody OrderWS orderWS) {
+	@PostMapping("/calculate")
+	public CostWS calculateCost(@Valid @RequestBody OrderWS orderWS) {
 		return orderService.calculate(orderWS);
 	}
 
-	@RequestMapping("sent")
-	public void sentOrder(@RequestBody OrderWS orderWS) {
+	@PostMapping("/send")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void sentOrder(@Valid @RequestBody OrderWS orderWS) {
 		//TODO: save order, create PDF and sent it
 	}
+
+
 }

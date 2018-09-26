@@ -1,8 +1,9 @@
 package xyz.blackmonster.window.services;
 
+import xyz.blackmonster.window.responses.CostWS;
 import xyz.blackmonster.window.responses.OrderWS;
 
 public interface OrderService {
 
-	OrderWS calculate(OrderWS orderWS);
+	CostWS calculate(OrderWS orderWS);
 }
