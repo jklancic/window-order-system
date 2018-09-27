@@ -28,7 +28,7 @@ public class Cost {
 	private int valueAddedTaxPercentage;
 	@Column(name = "total_cost")
 	private int totalCost;
-	@OneToOne(fetch = FetchType.EAGER, optional = false)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_uuid", nullable = false)
 	private Order order;
 

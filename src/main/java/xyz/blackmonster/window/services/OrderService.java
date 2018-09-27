@@ -6,4 +6,6 @@ import xyz.blackmonster.window.responses.OrderWS;
 public interface OrderService {
 
 	CostWS calculate(OrderWS orderWS);
+
+	void saveAndSentOrder(OrderWS orderWS);
 }

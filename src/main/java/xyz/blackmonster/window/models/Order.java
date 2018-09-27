@@ -23,11 +23,11 @@ public class Order {
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String uuid;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Window> windows;
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Service service;
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Cost cost;
 	@Column(name = "email")
 	private String email;

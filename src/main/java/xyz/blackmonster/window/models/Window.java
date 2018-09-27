@@ -2,6 +2,7 @@ package xyz.blackmonster.window.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -44,8 +45,8 @@ public class Window {
 	private Blinds blinds;
 	@Column(name = "mosquito")
 	private Mosquito mosquito;
-	@ManyToOne
-	@JoinColumn(name = "order_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_uuid", nullable = false)
 	private Order order;
 
 	public String getUuid() {

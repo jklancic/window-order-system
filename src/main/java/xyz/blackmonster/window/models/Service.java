@@ -32,7 +32,7 @@ public class Service {
 	private boolean finalization;
 	@Column(name = "distance")
 	private int distance;
-	@OneToOne(fetch = FetchType.EAGER, optional = false)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_uuid", nullable = false)
 	private Order order;
 
