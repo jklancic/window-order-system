@@ -2,8 +2,11 @@ package xyz.blackmonster.window.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,6 +32,9 @@ public class Service {
 	private boolean finalization;
 	@Column(name = "distance")
 	private int distance;
+	@OneToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "order_uuid", nullable = false)
+	private Order order;
 
 	public String getUuid() {
 		return uuid;
@@ -84,5 +90,13 @@ public class Service {
 
 	public void setDistance(int distance) {
 		this.distance = distance;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 }

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan("xyz.blackmonster.window")
 @EnableJpaRepositories("xyz.blackmonster.window.repositories")
-@EntityScan("xyz.blackmonster.window.repositories")
+@EntityScan("xyz.blackmonster.window.models")
 public class WindowAppApplication {
 
 	public static void main(String[] args) {

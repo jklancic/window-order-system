@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -42,6 +44,9 @@ public class Window {
 	private Blinds blinds;
 	@Column(name = "mosquito")
 	private Mosquito mosquito;
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private Order order;
 
 	public String getUuid() {
 		return uuid;
@@ -121,5 +126,13 @@ public class Window {
 
 	public void setMosquito(Mosquito mosquito) {
 		this.mosquito = mosquito;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 }
