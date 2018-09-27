@@ -205,7 +205,7 @@ jQuery(document).ready(function() {
     });
 
     // submit
-    $('.f1').on('submit', function(e) {
+    $('.f1 .btn-submit').on('click', function(e) {
 
     	var email = retrieve_email();
 			var emailValidation = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
@@ -219,8 +219,12 @@ jQuery(document).ready(function() {
 			$.ajax({
 				type: 'POST',
 				async: false,
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
 				url: '/api/order/send',
-				data: order,
+				data: JSON.stringify(order),
 				dataType: 'json'
 			}).success(function(cost) {
 				show_success('div.error-step-3', 'Konfiguracija poslana. Izracun bi moral prispet v kratkem.')
