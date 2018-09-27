@@ -101,6 +101,15 @@ function show_error(selector, message) {
 	  }, 3000);
 }
 
+function show_success(selector, message) {
+	$(selector).append('<div class="alert alert-success" role="alert">' + message + '</div>');
+	setTimeout(function() {
+		$('.alert-danger').fadeTo(500, 0).slideUp(500, function(){
+			$(this).remove();
+		});
+	}, 3000);
+}
+
 jQuery(document).ready(function() {
 
     /*
@@ -214,11 +223,10 @@ jQuery(document).ready(function() {
 				data: order,
 				dataType: 'json'
 			}).success(function(cost) {
-				cost_update(cost);
+				show_success('div.error-step-3', 'Konfiguracija poslana. Izracun bi moral prispet v kratkem.')
 			}).error(function() {
-				next_step = false;
+				show_error('div.error-step-3', 'Prislo je do napake. Prosim se enkrat klikni "Poslji".')
 			});
-			//TODO: Add API call to sent the order per email by passing order ID
     });
 
 	$('.btn-add-window').on('click', function() {
