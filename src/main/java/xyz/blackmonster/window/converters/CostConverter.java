@@ -4,7 +4,7 @@ import xyz.blackmonster.window.models.Cost;
 import xyz.blackmonster.window.responses.CostWS;
 
 /**
- * Converts WS objects from and to base models
+ * Converts WS cost objects from and to cost models
  */
 public class CostConverter {
 
@@ -21,5 +21,20 @@ public class CostConverter {
 		costWS.setTotalCost(cost.getTotalCost());
 
 		return costWS;
+	}
+
+	/**
+	 * Converts CostWS instance to Cost instance
+	 * @param costWS
+	 * @return
+	 */
+	public static Cost toModel(CostWS costWS) {
+		Cost cost = new Cost();
+		cost.setWindowCost(costWS.getWindowCost());
+		cost.setServiceCost(costWS.getServiceCost());
+		cost.setValueAddedTaxPercentage(costWS.getValueAddedTaxPercentage());
+		cost.setTotalCost(costWS.getTotalCost());
+
+		return cost;
 	}
 }

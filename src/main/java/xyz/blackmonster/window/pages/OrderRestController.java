@@ -33,8 +33,6 @@ public class OrderRestController {
 	@PostMapping("/send")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void sentOrder(@Valid @RequestBody OrderWS orderWS) {
-		//TODO: save order, create PDF and sent it
+		orderService.saveAndSentOrder(orderWS);
 	}
-
-
 }

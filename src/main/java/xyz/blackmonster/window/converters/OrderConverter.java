@@ -1,5 +1,7 @@
 package xyz.blackmonster.window.converters;
 
+import java.util.stream.Collectors;
+
 import xyz.blackmonster.window.models.Order;
 import xyz.blackmonster.window.responses.OrderWS;
 
@@ -15,7 +17,9 @@ public class OrderConverter {
 	 */
 	public static OrderWS toWS(Order order) {
 		OrderWS orderWS = new OrderWS();
-		//TODO: add converter
+		orderWS.setWindows(order.getWindows().stream().map(WindowConverter::toWS).collect(Collectors.toList()));
+		orderWS.setService(ServiceConverter.toWS(order.getService()));
+		orderWS.setEmail(order.getEmail());
 
 		return orderWS;
 	}
@@ -27,7 +31,9 @@ public class OrderConverter {
 	 */
 	public static Order toModel(OrderWS orderWS) {
 		Order order = new Order();
-		//TODO: add converter
+		order.setWindows(orderWS.getWindows().stream().map(WindowConverter::toModel).collect(Collectors.toList()));
+		order.setService(ServiceConverter.toModel(orderWS.getService()));
+		order.setEmail(orderWS.getEmail());
 
 		return order;
 	}
