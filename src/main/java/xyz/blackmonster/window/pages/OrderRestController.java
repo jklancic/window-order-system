@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,11 @@ public class OrderRestController {
 
 	@PostMapping("/send")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void sentOrder(@Valid @RequestBody OrderWS orderWS) {
+	public ResponseEntity<String> sentOrder(@Valid @RequestBody OrderWS orderWS) {
+		if (orderWS.getEmail() == null || orderWS.getEmail().isEmpty()) {
+			return new ResponseEntity<>("Email is needed", HttpStatus.BAD_REQUEST);
+		}
 		orderService.saveAndSentOrder(orderWS);
+		return new ResponseEntity<>("Order will be sent", HttpStatus.OK);
 	}
 }
