@@ -2,9 +2,14 @@ package xyz.blackmonster.window.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,16 +20,16 @@ import org.hibernate.annotations.GenericGenerator;
 public class Order {
 
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(
-		name = "UUID",
-		strategy = "org.hibernate.id.UUIDGenerator"
-	)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String uuid;
-
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
 	private List<Window> windows;
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
 	private Service service;
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
 	private Cost cost;
+	@Column(name = "email")
 	private String email;
 
 	public String getUuid() {

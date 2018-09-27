@@ -1,22 +1,22 @@
 package xyz.blackmonster.window.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import xyz.blackmonster.window.converters.CostConverter;
 import xyz.blackmonster.window.models.Cost;
-import xyz.blackmonster.window.repositories.OrderRepositoriy;
+import xyz.blackmonster.window.repositories.OrderRepository;
 import xyz.blackmonster.window.responses.CostWS;
 import xyz.blackmonster.window.responses.OrderWS;
 
-@Component
+@Service
 public class OrderServiceImpl implements OrderService {
 
-	private OrderRepositoriy orderRepositoriy;
+	private OrderRepository orderRepository;
 
 	@Autowired
-	public OrderServiceImpl(OrderRepositoriy orderRepositoriy) {
-		this.orderRepositoriy = orderRepositoriy;
+	public OrderServiceImpl(OrderRepository orderRepository) {
+		this.orderRepository = orderRepository;
 	}
 
 	@Override

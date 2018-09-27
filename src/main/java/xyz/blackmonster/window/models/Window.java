@@ -1,5 +1,6 @@
 package xyz.blackmonster.window.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,21 +21,26 @@ import xyz.blackmonster.window.types.WindowType;
 public class Window {
 
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(
-		name = "UUID",
-		strategy = "org.hibernate.id.UUIDGenerator"
-	)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String uuid;
-
+	@Column(name = "quantity")
 	private int quantity;
+	@Column(name = "width")
 	private int width;
+	@Column(name = "height")
 	private int height;
+	@Column(name = "glazing")
 	private Glazing glazing;
+	@Column(name = "color")
 	private Color color;
+	@Column(name = "type")
 	private WindowType type;
+	@Column(name = "shelf")
 	private Shelf shelf;
+	@Column(name = "blinds")
 	private Blinds blinds;
+	@Column(name = "mosquito")
 	private Mosquito mosquito;
 
 	public String getUuid() {

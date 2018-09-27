@@ -1,5 +1,6 @@
 package xyz.blackmonster.window.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,18 +14,20 @@ import org.hibernate.annotations.GenericGenerator;
 public class Service {
 
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(
-		name = "UUID",
-		strategy = "org.hibernate.id.UUIDGenerator"
-	)
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String uuid;
-
+	@Column(name = "deinstallation")
 	private boolean deinstallation;
+	@Column(name = "disposal")
 	private boolean disposal;
+	@Column(name = "shipping")
 	private boolean shipping;
+	@Column(name = "installation")
 	private boolean installation;
+	@Column(name = "finalization")
 	private boolean finalization;
+	@Column(name = "distance")
 	private int distance;
 
 	public String getUuid() {

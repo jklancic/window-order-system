@@ -1,14 +1,29 @@
 package xyz.blackmonster.window.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * Total costs
  */
+@Entity
 public class Cost {
 
+	@Id
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String uuid;
+	@Column(name = "window_cost")
 	private int windowCost;
+	@Column(name = "service_cost")
 	private int serviceCost;
+	@Column(name = "value_added_tax")
 	private int valueAddedTaxPercentage;
+	@Column(name = "total_cost")
 	private int totalCost;
 
 	public String getUuid() {
