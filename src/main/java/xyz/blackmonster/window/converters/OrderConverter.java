@@ -2,7 +2,7 @@ package xyz.blackmonster.window.converters;
 
 import java.util.stream.Collectors;
 
-import xyz.blackmonster.window.models.Order;
+import xyz.blackmonster.window.models.WindowOrder;
 import xyz.blackmonster.window.responses.OrderWS;
 
 /**
@@ -11,30 +11,30 @@ import xyz.blackmonster.window.responses.OrderWS;
 public class OrderConverter {
 
 	/**
-	 * Converts Order instance to OrderWS instance
-	 * @param order
+	 * Converts WindowOrder instance to OrderWS instance
+	 * @param windowOrder
 	 * @return
 	 */
-	public static OrderWS toWS(Order order) {
+	public static OrderWS toWS(WindowOrder windowOrder) {
 		OrderWS orderWS = new OrderWS();
-		orderWS.setWindows(order.getWindows().stream().map(WindowConverter::toWS).collect(Collectors.toList()));
-		orderWS.setService(ServiceConverter.toWS(order.getService()));
-		orderWS.setEmail(order.getEmail());
+		orderWS.setWindows(windowOrder.getWindows().stream().map(WindowConverter::toWS).collect(Collectors.toList()));
+		orderWS.setService(ServiceConverter.toWS(windowOrder.getService()));
+		orderWS.setEmail(windowOrder.getEmail());
 
 		return orderWS;
 	}
 
 	/**
-	 * Converts OrderWS instance to Order instance
+	 * Converts OrderWS instance to WindowOrder instance
 	 * @param orderWS
 	 * @return
 	 */
-	public static Order toModel(OrderWS orderWS) {
-		Order order = new Order();
-		order.setWindows(orderWS.getWindows().stream().map(WindowConverter::toModel).collect(Collectors.toList()));
-		order.setService(ServiceConverter.toModel(orderWS.getService()));
-		order.setEmail(orderWS.getEmail());
+	public static WindowOrder toModel(OrderWS orderWS) {
+		WindowOrder windowOrder = new WindowOrder();
+		windowOrder.setWindows(orderWS.getWindows().stream().map(WindowConverter::toModel).collect(Collectors.toList()));
+		windowOrder.setService(ServiceConverter.toModel(orderWS.getService()));
+		windowOrder.setEmail(orderWS.getEmail());
 
-		return order;
+		return windowOrder;
 	}
 }

@@ -47,7 +47,7 @@ public class Window {
 	private Mosquito mosquito;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_uuid", nullable = false)
-	private Order order;
+	private WindowOrder windowOrder;
 
 	public String getUuid() {
 		return uuid;
@@ -129,11 +129,11 @@ public class Window {
 		this.mosquito = mosquito;
 	}
 
-	public Order getOrder() {
-		return order;
+	public WindowOrder getWindowOrder() {
+		return windowOrder;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setWindowOrder(WindowOrder windowOrder) {
+		this.windowOrder = windowOrder;
 	}
 }

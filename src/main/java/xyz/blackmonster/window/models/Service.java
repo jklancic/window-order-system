@@ -34,7 +34,7 @@ public class Service {
 	private int distance;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_uuid", nullable = false)
-	private Order order;
+	private WindowOrder windowOrder;
 
 	public String getUuid() {
 		return uuid;
@@ -92,11 +92,11 @@ public class Service {
 		this.distance = distance;
 	}
 
-	public Order getOrder() {
-		return order;
+	public WindowOrder getWindowOrder() {
+		return windowOrder;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setWindowOrder(WindowOrder windowOrder) {
+		this.windowOrder = windowOrder;
 	}
 }

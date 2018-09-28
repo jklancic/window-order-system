@@ -12,7 +12,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-import xyz.blackmonster.window.models.Order;
+import xyz.blackmonster.window.models.WindowOrder;
 
 /**
  * Email service
@@ -25,7 +25,7 @@ public class PDFServiceImpl implements PDFService {
 	private static String TEMP_FILE_PATH = "temp_%s";
 
 	@Override
-	public File createPDF(Order order) {
+	public File createPDF(WindowOrder windowOrder) {
 
 		String tempFilePath = String.format(TEMP_FILE_PATH, Clock.systemUTC().instant());
 		try {

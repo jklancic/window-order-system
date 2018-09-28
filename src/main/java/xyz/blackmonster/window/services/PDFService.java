@@ -2,9 +2,9 @@ package xyz.blackmonster.window.services;
 
 import java.io.File;
 
-import xyz.blackmonster.window.models.Order;
+import xyz.blackmonster.window.models.WindowOrder;
 
 public interface PDFService {
 
-	File createPDF(Order order);
+	File createPDF(WindowOrder windowOrder);
 }
