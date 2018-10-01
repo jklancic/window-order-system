@@ -5,5 +5,5 @@ package xyz.blackmonster.window.types;
  */
 public enum Shelf {
 
-	NONE, INNER, OUTER
+	NONE, INNER, OUTER, INNER_OUTER
 }

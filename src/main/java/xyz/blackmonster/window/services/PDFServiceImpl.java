@@ -6,6 +6,7 @@ import java.time.Clock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -29,6 +30,7 @@ public class PDFServiceImpl implements PDFService {
 
 		String tempFilePath = String.format(TEMP_FILE_PATH, Clock.systemUTC().instant());
 		try {
+//			File file = new ClassPathResource("countries.xml").getFile();
 			PdfWriter writer = new PdfWriter(tempFilePath);
 			//Initialize PDF document
 			PdfDocument pdf = new PdfDocument(writer);

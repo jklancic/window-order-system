@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -31,6 +33,9 @@ public class WindowOrder {
 	private Cost cost;
 	@Column(name = "email")
 	private String email;
+	@Generated(GenerationTime.INSERT)
+	@Column(name = "order_number", insertable = false)
+	private long orderNumber;
 
 	public String getUuid() {
 		return uuid;
@@ -70,5 +75,13 @@ public class WindowOrder {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public long getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(long orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 }
