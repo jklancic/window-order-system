@@ -1,0 +1,36 @@
+{
+	"translations": {
+		"none": "brez",
+		"glazing": {
+			"double": "dvojna",
+			"triple": "trojna"
+		},
+		"color": {
+			"white_white": "bela/bela",
+			"decor_white": "dekor/bela",
+			"decor_decor": "dekor/dekor"
+		},
+		"type": {
+			"one_piece": "enodelno",
+			"two_piece": "dvodelno",
+			"fix": "fiksno",
+			"slide": "drsno"
+		},
+		"shelf": {
+			"inner": "notranja",
+			"outer": "zunanja",
+			"inner_outer": "notranja in zunanja"
+		},
+		"blinds": {
+			"outdoor_rollers": "zunanje rollete",
+			"shutter_rollers": "nadokenske rolete",
+			"hidden_rollers": "podometne rolete",
+			"outdoor_blinds": "zunanje zaluzije",
+			"indoor_blinds": "notranje zaluzije"
+		},
+		"mosquito": {
+			"roller": "rolo",
+			"fix": "fiksen"
+		}
+	}
+}

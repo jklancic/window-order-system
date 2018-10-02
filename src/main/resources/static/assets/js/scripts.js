@@ -1,6 +1,11 @@
 var order = { windows: [] };
 var step_index = 0;
 
+var translations = {};
+$.getJSON("assets/translation/messages.json", function(json) {
+	translations = json.translations;
+});
+
 function scroll_to_class(element_class, removed_height) {
 	var scroll_to = $(element_class).offset().top - removed_height;
 	if($(window).scrollTop() != scroll_to) {
@@ -80,16 +85,25 @@ function add_window(newWindow) {
 	// dynamically creating new row
 	var newRow = '<tr><td>' + newWindow.quantity + '</td>';
 	newRow = newRow.concat('<td>' + newWindow.width + 'x' + newWindow.height + '</td>');
-	newRow = newRow.concat('<td>' + newWindow.glazing + '</td>');
-	newRow = newRow.concat('<td>' + newWindow.color + '</td>');
-	newRow = newRow.concat('<td>' + newWindow.type + '</td>');
-	newRow = newRow.concat('<td>' + newWindow.shelf + '</td>');
-	newRow = newRow.concat('<td>' + newWindow.blinds + '</td>');
-	newRow = newRow.concat('<td>' + newWindow.mosquito + '</td>');
+	newRow = newRow.concat('<td>' + getTranslation('glazing', newWindow.glazing) + '</td>');
+	newRow = newRow.concat('<td>' + getTranslation('color', newWindow.color) + '</td>');
+	newRow = newRow.concat('<td>' + getTranslation('type', newWindow.type) + '</td>');
+	newRow = newRow.concat('<td>' + getTranslation('shelf', newWindow.shelf) + '</td>');
+	newRow = newRow.concat('<td>' + getTranslation('blinds', newWindow.blinds) + '</td>');
+	newRow = newRow.concat('<td>' + getTranslation('mosquito', newWindow.mosquito) + '</td>');
 	newRow = newRow.concat('<td><i class="fa fa-minus-circle" aria-hidden="true"></i></td></tr>');
 
 	// adding window to list
 	$('.window-list').append(newRow);
+}
+
+function getTranslation(domain, term) {
+	if (term === 'NONE') {
+		return translations.none;
+	}
+
+	var domainTranslations = translations[domain];
+	return domainTranslations[term.toLowerCase()];
 }
 
 function show_error(selector, message) {
