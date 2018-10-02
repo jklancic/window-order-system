@@ -6,13 +6,13 @@ import java.time.Clock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import xyz.blackmonster.window.models.Cost;
 import xyz.blackmonster.window.models.WindowOrder;
 
 /**
@@ -26,7 +26,7 @@ public class PDFServiceImpl implements PDFService {
 	private static String TEMP_FILE_PATH = "temp_%s";
 
 	@Override
-	public File createPDF(WindowOrder windowOrder) {
+	public File createPDF(WindowOrder windowOrder, Cost cost) {
 
 		String tempFilePath = String.format(TEMP_FILE_PATH, Clock.systemUTC().instant());
 		try {

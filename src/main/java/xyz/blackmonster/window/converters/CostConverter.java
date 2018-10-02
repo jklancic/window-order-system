@@ -22,19 +22,4 @@ public class CostConverter {
 
 		return costWS;
 	}
-
-	/**
-	 * Converts CostWS instance to Cost instance
-	 * @param costWS
-	 * @return
-	 */
-	public static Cost toModel(CostWS costWS) {
-		Cost cost = new Cost();
-		cost.setWindowCost(costWS.getWindowCost());
-		cost.setServiceCost(costWS.getServiceCost());
-		cost.setValueAddedTaxPercentage(costWS.getValueAddedTaxPercentage());
-		cost.setTotalCost(costWS.getTotalCost());
-
-		return cost;
-	}
 }

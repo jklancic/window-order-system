@@ -11,24 +11,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import xyz.blackmonster.window.converters.CostConverter;
+import xyz.blackmonster.window.converters.OrderConverter;
+import xyz.blackmonster.window.models.Cost;
 import xyz.blackmonster.window.responses.CostWS;
 import xyz.blackmonster.window.responses.OrderWS;
+import xyz.blackmonster.window.services.CostService;
 import xyz.blackmonster.window.services.OrderService;
 
 @RestController
 @RequestMapping("/api/order")
 public class OrderRestController {
 
-	private OrderService orderService;
+	private final OrderService orderService;
+
+	private final CostService costService;
 
 	@Autowired
-	public OrderRestController(OrderService orderService) {
+	public OrderRestController(OrderService orderService, CostService costService) {
 		this.orderService = orderService;
+		this.costService = costService;
 	}
 
 	@PostMapping("/calculate")
 	public CostWS calculateCost(@Valid @RequestBody OrderWS orderWS) {
-		return orderService.calculate(orderWS);
+		Cost cost = costService.calcAll(OrderConverter.toModel(orderWS), false);
+		return CostConverter.toWS(cost);
 	}
 
 	@PostMapping("/send")
@@ -37,7 +45,7 @@ public class OrderRestController {
 		if (orderWS.getEmail() == null || orderWS.getEmail().isEmpty()) {
 			return new ResponseEntity<>("Email is needed", HttpStatus.BAD_REQUEST);
 		}
-		orderService.saveAndSentOrder(orderWS);
+		orderService.saveAndSentOrder(OrderConverter.toModel(orderWS));
 		return new ResponseEntity<>("Order will be sent", HttpStatus.OK);
 	}
 }

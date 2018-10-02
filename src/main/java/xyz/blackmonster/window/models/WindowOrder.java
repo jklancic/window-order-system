@@ -5,11 +5,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -25,17 +23,17 @@ public class WindowOrder {
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String uuid;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "windowOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "windowOrder", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Window> windows;
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "windowOrder", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Service service;
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "windowOrder", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Cost cost;
+	@OneToMany(mappedBy = "windowOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<WindowService> services;
 	@Column(name = "email")
 	private String email;
 	@Generated(GenerationTime.INSERT)
 	@Column(name = "order_number", insertable = false)
 	private long orderNumber;
+	@Column(name = "value_added_tax")
+	private double valueAddedTaxPercentage;
 
 	public String getUuid() {
 		return uuid;
@@ -53,20 +51,12 @@ public class WindowOrder {
 		this.windows = windows;
 	}
 
-	public Service getService() {
-		return service;
+	public List<WindowService> getServices() {
+		return services;
 	}
 
-	public void setService(Service service) {
-		this.service = service;
-	}
-
-	public Cost getCost() {
-		return cost;
-	}
-
-	public void setCost(Cost cost) {
-		this.cost = cost;
+	public void setServices(List<WindowService> services) {
+		this.services = services;
 	}
 
 	public String getEmail() {
@@ -83,5 +73,13 @@ public class WindowOrder {
 
 	public void setOrderNumber(long orderNumber) {
 		this.orderNumber = orderNumber;
+	}
+
+	public double getValueAddedTaxPercentage() {
+		return valueAddedTaxPercentage;
+	}
+
+	public void setValueAddedTaxPercentage(double valueAddedTaxPercentage) {
+		this.valueAddedTaxPercentage = valueAddedTaxPercentage;
 	}
 }

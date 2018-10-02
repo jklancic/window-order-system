@@ -1,82 +1,44 @@
 package xyz.blackmonster.window.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.GenericGenerator;
-
 /**
  * Total costs
  */
-@Entity
 public class Cost {
 
-	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
-	private String uuid;
-	@Column(name = "window_cost")
-	private int windowCost;
-	@Column(name = "service_cost")
-	private int serviceCost;
-	@Column(name = "value_added_tax")
-	private int valueAddedTaxPercentage;
-	@Column(name = "total_cost")
-	private int totalCost;
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "order_uuid", nullable = false)
-	private WindowOrder windowOrder;
+	private double windowCost;
+	private double serviceCost;
+	private double valueAddedTaxPercentage;
+	private double totalCost;
 
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-
-	public int getWindowCost() {
+	public double getWindowCost() {
 		return windowCost;
 	}
 
-	public void setWindowCost(int windowCost) {
+	public void setWindowCost(double windowCost) {
 		this.windowCost = windowCost;
 	}
 
-	public int getServiceCost() {
+	public double getServiceCost() {
 		return serviceCost;
 	}
 
-	public void setServiceCost(int serviceCost) {
+	public void setServiceCost(double serviceCost) {
 		this.serviceCost = serviceCost;
 	}
 
-	public int getValueAddedTaxPercentage() {
+	public double getValueAddedTaxPercentage() {
 		return valueAddedTaxPercentage;
 	}
 
-	public void setValueAddedTaxPercentage(int valueAddedTaxPercentage) {
+	public void setValueAddedTaxPercentage(double valueAddedTaxPercentage) {
 		this.valueAddedTaxPercentage = valueAddedTaxPercentage;
 	}
 
-	public int getTotalCost() {
+	public double getTotalCost() {
 		return totalCost;
 	}
 
-	public void setTotalCost(int totalCost) {
+	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
-	}
-
-	public WindowOrder getWindowOrder() {
-		return windowOrder;
-	}
-
-	public void setWindowOrder(WindowOrder windowOrder) {
-		this.windowOrder = windowOrder;
 	}
 }

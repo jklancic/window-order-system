@@ -13,6 +13,7 @@ public class OrderWS {
 	private List<WindowWS> windows;
 	@NotNull
 	private ServiceWS service;
+	private CostWS cost;
 	private String email;
 
 	public List<WindowWS> getWindows() {
@@ -29,6 +30,14 @@ public class OrderWS {
 
 	public void setService(ServiceWS service) {
 		this.service = service;
+	}
+
+	public CostWS getCost() {
+		return cost;
+	}
+
+	public void setCost(CostWS cost) {
+		this.cost = cost;
 	}
 
 	public String getEmail() {
