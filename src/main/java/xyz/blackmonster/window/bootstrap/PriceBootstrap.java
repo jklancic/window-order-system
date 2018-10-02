@@ -87,7 +87,7 @@ public class PriceBootstrap implements ApplicationListener<ContextRefreshedEvent
 		TaxPrice additionalValuePrice = new TaxPrice();
 		PriceInfo priceInfo = new PriceInfo();
 		priceInfo.setFix(false);
-		priceInfo.setValue(20);
+		priceInfo.setValue(20.0);
 		priceInfo.setTaxPrice(additionalValuePrice);
 		additionalValuePrice.setPriceInfo(priceInfo);
 		additionalValuePrice.setType(TaxType.VALUE_ADDED_TAX);
@@ -127,7 +127,7 @@ public class PriceBootstrap implements ApplicationListener<ContextRefreshedEvent
 	private PriceInfo createDummyPriceInfo(boolean fix) {
 		PriceInfo priceInfo = new PriceInfo();
 		priceInfo.setFix(fix);
-		priceInfo.setValue(fix ? 100 : 10);
+		priceInfo.setValue(fix ? 100.0 : 10.0);
 
 		return priceInfo;
 	}
