@@ -6,6 +6,7 @@ import java.time.Clock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -24,6 +25,13 @@ public class PDFServiceImpl implements PDFService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PDFServiceImpl.class);
 
 	private static String TEMP_FILE_PATH = "temp_%s";
+
+	private final TranslationService translationService;
+
+	@Autowired
+	public PDFServiceImpl(TranslationService translationService) {
+		this.translationService = translationService;
+	}
 
 	@Override
 	public File createPDF(WindowOrder windowOrder, Cost cost) {

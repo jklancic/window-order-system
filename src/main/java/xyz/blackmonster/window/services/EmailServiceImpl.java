@@ -1,13 +1,17 @@
 package xyz.blackmonster.window.services;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
 
 	private final JavaMailSender javaMailSender;
 
@@ -33,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message,true);
 			helper.setTo(receiver);
-			helper.setText("Pozdravljeni, \n V prilogi boste nasli informativni izracun nabave oken.");
+			helper.setText(loadEmailContent());
 			helper.setSubject("Informativni izracun za okna");
 			helper.addAttachment("izracun.pdf", createdPdf);
 			javaMailSender.send(message);
@@ -44,6 +48,17 @@ public class EmailServiceImpl implements EmailService {
 			if (!success) {
 				LOGGER.error("Not able to delete file " + createdPdf.getAbsoluteFile());
 			}
+		}
+	}
+
+	private String loadEmailContent() {
+		try {
+			File file = new ClassPathResource("countries.xml").getFile();
+			Document document = Jsoup.parse(file, "UTF-8");
+			return document.html();
+		} catch (IOException e) {
+			LOGGER.error("Email was not sent: " + e.getMessage(), e);
+			return "Pozdravljeni, \n V prilogi boste nasli informativni izracun nabave oken.";
 		}
 	}
 }
