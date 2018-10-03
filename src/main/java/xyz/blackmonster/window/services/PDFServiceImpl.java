@@ -60,9 +60,9 @@ public class PDFServiceImpl implements PDFService {
 
 		Elements invoiceInfo = document.select("#invoice-info");
 		LocalDate now = LocalDate.now();
-		invoiceInfo.append("Racun st: " + windowOrder.getOrderNumber() + "</br>");
-		invoiceInfo.append("Datum: " + now + "</br>");
-		invoiceInfo.append("Veljaven do: " + now.plusDays(90) + "</br>");
+		invoiceInfo.append("<b>Ra\u010Dun \u0161t:</b> " + windowOrder.getOrderNumber() + "</br>");
+		invoiceInfo.append("<b>Datum:</b> " + now + "</br>");
+		invoiceInfo.append("<b>Veljaven do:</b> " + now.plusDays(90) + "</br>");
 
 		Elements receiver = document.select("#invoice-receiver");
 		receiver.append(windowOrder.getEmail());

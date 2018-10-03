@@ -43,8 +43,8 @@ public class EmailServiceImpl implements EmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(message,true);
 			helper.setTo(receiver);
 			helper.setText(loadEmailContent(), true);
-			helper.setSubject("Informativni izracun za okna");
-			helper.addAttachment("izracun.pdf", createdPdf);
+			helper.setSubject("Informativni izra\u010Dun za okna");
+			helper.addAttachment("izra\u010Dun.pdf", createdPdf);
 			javaMailSender.send(message);
 		} catch (MessagingException e) {
 			LOGGER.error("Email was not sent: " + e.getMessage(), e);

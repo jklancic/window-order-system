@@ -234,16 +234,16 @@ jQuery(document).ready(function() {
 				type: 'POST',
 				async: false,
 				headers: {
-					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
 				url: '/api/order/send',
 				data: JSON.stringify(order),
-				dataType: 'json'
-			}).success(function(cost) {
-				show_success('div.error-step-3', 'Konfiguracija poslana. Izracun bi moral prispet v kratkem.')
-			}).error(function() {
-				show_error('div.error-step-3', 'Prislo je do napake. Prosim se enkrat klikni "Poslji".')
+				success: function() {
+					show_success('div.error-step-3', 'Konfiguracija poslana. Izračun bi moral prispet v kratkem.')
+				},
+				error: function() {
+					show_error('div.error-step-3', 'Prišlo je do napake. Prosim se enkrat klikni "Pošlji".')
+				}
 			});
     });
 
