@@ -118,7 +118,7 @@ function show_error(selector, message) {
 function show_success(selector, message) {
 	$(selector).append('<div class="alert alert-success" role="alert">' + message + '</div>');
 	setTimeout(function() {
-		$('.alert-danger').fadeTo(500, 0).slideUp(500, function(){
+		$('.alert-success').fadeTo(500, 0).slideUp(500, function(){
 			$(this).remove();
 		});
 	}, 3000);
@@ -162,7 +162,7 @@ jQuery(document).ready(function() {
 			} else if (step_index == 1) {
 				if (($('#shipping').is(':checked')) && (!$('#distance').val() || $('#distance').val() == "")) {
 					next_step = false;
-					show_error('div.error-step-2', 'Vnesi kilometrino, da se lahko izracunajo stroski z dostavo.');
+					show_error('div.error-step-2', 'Vnesi kilometrino, da se lahko izračunajo stroški z dostavo.');
 				}
 				order.service = retrieve_service();
 				$.ajax({
@@ -263,7 +263,7 @@ jQuery(document).ready(function() {
 			order.windows.push(newWindow);
 			add_window(newWindow);
 		} else {
-			show_error('div.error-step-1', 'Vnesi kolicino in dimenzije');
+			show_error('div.error-step-1', 'Vnesi količino in dimenzije');
 		}
 	});
 

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Clock;
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +19,9 @@ import org.springframework.stereotype.Service;
 
 import com.itextpdf.html2pdf.HtmlConverter;
 import xyz.blackmonster.window.models.Cost;
+import xyz.blackmonster.window.models.Window;
 import xyz.blackmonster.window.models.WindowOrder;
+import xyz.blackmonster.window.models.WindowService;
 
 /**
  * Email service
@@ -67,6 +70,25 @@ public class PDFServiceImpl implements PDFService {
 		Elements receiver = document.select("#invoice-receiver");
 		receiver.append(windowOrder.getEmail());
 
+		Elements windowList = document.select("#window-list");
+		LinkedList<Window> windows = new LinkedList<>(windowOrder.getWindows());
+		windows.descendingIterator().forEachRemaining(window -> addWindowLine(window, windowList));
+
+		Elements serviceList = document.select("#service-list");
+		LinkedList<WindowService> services = new LinkedList<>(windowOrder.getServices());
+		services.descendingIterator().forEachRemaining(service -> addServiceLine(service, serviceList));
+
 		return document;
+	}
+
+	private void addWindowLine(Window window, Elements elements) {
+		String windowAsString = window.getQuantity() + " x " + window.getWidth() + " x " + window.getHeight();
+		String line =  "<tr class=\"item\"><td>" + windowAsString + "</td><td>" + window.getCost() + " EUR</td></tr>";
+		elements.after(line);
+	}
+
+	private void addServiceLine(WindowService service, Elements elements) {
+		String line =  "<tr class=\"item\"><td>" + service.getType() + "</td><td>" + service.getCost() + " EUR</td></tr>";
+		elements.after(line);
 	}
 }
