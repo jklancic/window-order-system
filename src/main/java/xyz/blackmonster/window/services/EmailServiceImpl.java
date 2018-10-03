@@ -42,7 +42,7 @@ public class EmailServiceImpl implements EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message,true);
 			helper.setTo(receiver);
-			helper.setText(loadEmailContent());
+			helper.setText(loadEmailContent(), true);
 			helper.setSubject("Informativni izracun za okna");
 			helper.addAttachment("izracun.pdf", createdPdf);
 			javaMailSender.send(message);
@@ -60,7 +60,8 @@ public class EmailServiceImpl implements EmailService {
 		try {
 			File file = new ClassPathResource("templates/email.html").getFile();
 			Document document = Jsoup.parse(file, "UTF-8");
-			return document.html();
+			// we need to remove the HTML tag
+			return document.select("html").html();
 		} catch (IOException e) {
 			LOGGER.error("Email was not sent: " + e.getMessage(), e);
 			return "Pozdravljeni, \n V prilogi boste nasli informativni izracun nabave oken.";

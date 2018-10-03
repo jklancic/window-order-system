@@ -5,12 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalDate;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import xyz.blackmonster.window.models.Cost;
 import xyz.blackmonster.window.models.WindowOrder;
@@ -33,8 +30,6 @@ public class PDFServiceImpl implements PDFService {
 
 	private static String TEMP_FILE_PATH = "temp_%s";
 
-	private static String BASE_RESOURCE_PATH = "http://localhost:8080/assets/";
-
 	private final TranslationService translationService;
 
 	@Autowired
@@ -47,7 +42,6 @@ public class PDFServiceImpl implements PDFService {
 
 		String tempFilePath = String.format(TEMP_FILE_PATH, Clock.systemUTC().instant());
 		try {
-			ConverterProperties properties = new ConverterProperties();
 			Document invoiceContent = createInvoiceContent(windowOrder, cost);
 			HtmlConverter.convertToPdf(invoiceContent.html(), new FileOutputStream(tempFilePath));
 			return new File(tempFilePath);
