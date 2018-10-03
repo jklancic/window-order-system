@@ -1,6 +1,10 @@
 package xyz.blackmonster.window.services;
 
+import java.io.File;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import xyz.blackmonster.window.models.Cost;
@@ -65,10 +69,16 @@ public class CostServiceImpl implements CostService {
 	@Override
 	public Cost calcAll(WindowOrder windowOrder, boolean saveOrder) {
 		Cost cost = new Cost();
-		windowOrder.getWindows().forEach(window -> window.setCost(calcWindowPrice(window)));
+		windowOrder.getWindows().forEach(window -> {
+			window.setCost(calcWindowPrice(window));
+			window.setWindowOrder(windowOrder);
+		});
 		final double windowCost = windowOrder.getWindows().stream().mapToDouble(Window::getCost).sum();
 		cost.setWindowCost(windowCost);
-		windowOrder.getServices().forEach(service -> service.setCost(calcServicePrice(service, windowCost)));
+		windowOrder.getServices().forEach(service -> {
+			service.setCost(calcServicePrice(service, windowCost));
+			service.setWindowOrder(windowOrder);
+		});
 		final double serviceCost = windowOrder.getServices().stream().mapToDouble(WindowService::getCost).sum();
 		cost.setServiceCost(serviceCost);
 		TaxPrice price = taxPriceRepository.findByType(TaxType.VALUE_ADDED_TAX);
@@ -77,9 +87,24 @@ public class CostServiceImpl implements CostService {
 		cost.setTotalCost(calcTax(windowCost + serviceCost));
 
 		if (saveOrder) {
-			orderRepository.save(windowOrder);
+			saveOrder(windowOrder);
 		}
 
 		return cost;
+	}
+
+	private void saveOrder(WindowOrder windowOrder) {
+		LocalDate now = LocalDate.now();
+		StringBuilder builder = new StringBuilder();
+		builder.append(now.getYear());
+		builder.append("-");
+		builder.append(now.getMonthValue());
+		builder.append(now.getDayOfMonth());
+		long count = orderRepository.countTodaysOrders(builder.toString());
+		builder.append("-");
+		builder.append(count);
+		windowOrder.setOrderNumber(builder.toString());
+
+		orderRepository.save(windowOrder);
 	}
 }

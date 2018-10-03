@@ -33,6 +33,11 @@ public class EmailServiceImpl implements EmailService {
 
 	@Override
 	public void sendEmail(File createdPdf, String receiver) {
+		if (createdPdf == null) {
+			LOGGER.error("PDF was not generated for " + receiver);
+			return;
+		}
+
 		MimeMessage message = javaMailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message,true);
@@ -53,7 +58,7 @@ public class EmailServiceImpl implements EmailService {
 
 	private String loadEmailContent() {
 		try {
-			File file = new ClassPathResource("countries.xml").getFile();
+			File file = new ClassPathResource("templates/email.html").getFile();
 			Document document = Jsoup.parse(file, "UTF-8");
 			return document.html();
 		} catch (IOException e) {

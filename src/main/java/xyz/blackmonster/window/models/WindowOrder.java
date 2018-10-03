@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -29,9 +27,8 @@ public class WindowOrder {
 	private List<WindowService> services;
 	@Column(name = "email")
 	private String email;
-	@Generated(GenerationTime.INSERT)
-	@Column(name = "order_number", insertable = false)
-	private long orderNumber;
+	@Column(name = "order_number")
+	private String orderNumber;
 	@Column(name = "value_added_tax")
 	private double valueAddedTaxPercentage;
 
@@ -67,11 +64,11 @@ public class WindowOrder {
 		this.email = email;
 	}
 
-	public long getOrderNumber() {
+	public String getOrderNumber() {
 		return orderNumber;
 	}
 
-	public void setOrderNumber(long orderNumber) {
+	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
 
