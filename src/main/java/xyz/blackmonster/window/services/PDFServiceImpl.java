@@ -78,6 +78,15 @@ public class PDFServiceImpl implements PDFService {
 		LinkedList<WindowService> services = new LinkedList<>(windowOrder.getServices());
 		services.descendingIterator().forEachRemaining(service -> addServiceLine(service, serviceList));
 
+		Elements windowTotal = document.select("#window-price");
+		windowTotal.html(cost.getWindowCost() + " EUR");
+		Elements serviceTotal = document.select("#service-price");
+		serviceTotal.html(cost.getServiceCost() + " EUR");
+		Elements tax = document.select("#value-tax");
+		tax.html(cost.getValueAddedTaxPercentage() + " %");
+		Elements total = document.select("#total-price");
+		total.html("Skupno: " + cost.getTotalCost() + " EUR");
+
 		return document;
 	}
 

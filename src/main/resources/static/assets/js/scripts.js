@@ -28,9 +28,9 @@ function bar_progress(progress_line_object, direction) {
 
 function cost_update(cost) {
 
-	$('#windowCost').html(cost.windowCost);
-	$('#serviceCost').html(cost.serviceCost);
-	$('#valueAddedTaxPercentage').html(cost.valueAddedTaxPercentage);
+	$('#windowCost').html(cost.windowCost + ' &euro;');
+	$('#serviceCost').html(cost.serviceCost + ' &euro;');
+	$('#valueAddedTaxPercentage').html(cost.valueAddedTaxPercentage + ' %');
 	$('#totalCost').html(cost.totalCost + ' &euro;');
 }
 
