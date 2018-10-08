@@ -1,6 +1,6 @@
 package xyz.blackmonster.window.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,27 +14,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private final CustomProperties customProperties;
+	@Value("${admin.console.username:admin}")
+	private String username;
 
-	@Autowired
-	public SpringSecurityConfig(CustomProperties customProperties) {
-		this.customProperties = customProperties;
-	}
+	@Value("${admin.console.password:admin}")
+	private String password;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
-			.withUser(customProperties.getUsername())
-			.password(passwordEncoder().encode(customProperties.getPassword())).roles("ADMIN");
+			.withUser(username)
+			.password(passwordEncoder().encode(password)).roles("ADMIN");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.httpBasic().and()
 			.authorizeRequests()
-				.antMatchers("/", "/assets/**", "/api/order/**").permitAll()
-				.antMatchers("/admin").hasRole("ADMIN");
+				.antMatchers("/", "/assets/**", "/api/order/calculate", "/api/order/**").permitAll()
+				.antMatchers("/admin/**").hasRole("ADMIN");
 //			.and()
 //			.formLogin()
 //				.loginPage("/login").failureUrl("/login-error");

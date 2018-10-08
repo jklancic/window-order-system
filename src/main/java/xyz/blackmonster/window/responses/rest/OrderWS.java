@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
  */
 public class OrderWS {
 
-	private String uuid;
 	@NotNull
 	private List<WindowWS> windows;
 	@NotNull
