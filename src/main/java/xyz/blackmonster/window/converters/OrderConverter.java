@@ -3,7 +3,7 @@ package xyz.blackmonster.window.converters;
 import java.util.stream.Collectors;
 
 import xyz.blackmonster.window.models.WindowOrder;
-import xyz.blackmonster.window.responses.OrderWS;
+import xyz.blackmonster.window.responses.rest.OrderWS;
 
 /**
  * Converts WS order objects from and to order models

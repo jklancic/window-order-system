@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+    <h1>Vpogled naročila</h1>
+    <p th:text="${order.orderNumber}">St. narocila</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Kolicina</th>
+            <th>Sirina</th>
+            <th>Visina</th>
+            <th>Zasteklitev</th>
+            <th>Barva</th>
+            <th>Tip</th>
+            <th>Polica</th>
+            <th>Zaluzije</th>
+            <th>Komarnik</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="window : ${order.getWindows()}">
+            <td th:text="${window.quantity}">Kolicina</td>
+            <td th:text="${window.width}">Sirina</td>
+            <td th:text="${window.height}">Visina</td>
+            <td th:text="${window.glazing}">Zasteklitev</td>
+            <td th:text="${window.color}">Barva</td>
+            <td th:text="${window.type}">Tip</td>
+            <td th:text="${window.shelf}">Polica</td>
+            <td th:text="${window.blinds}">Zaluzije</td>
+            <td th:text="${window.mosquito}">Komarnik</td>
+            <td th:text="${window.cost}">Cena</td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+        <tr>
+            <th>Tip</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${order.getServices().empty}">
+            <td colspan="2">Seznam storitev je prazen</td>
+        </tr>
+        <tr th:each="service : ${order.getServices()}">
+            <td th:text="${service.type}">Tip</td>
+            <td th:text="${service.cost}">Cena</td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:text="${order.windowCost}">Okna</p>
+    <p th:text="${order.serviceCost}">Storitve</p>
+    <p th:text="${order.valueAddedTaxPercentage}">Davek</p>
+    <p th:text="${order.totalCost}">Skupno</p>
+</body>
+</html>

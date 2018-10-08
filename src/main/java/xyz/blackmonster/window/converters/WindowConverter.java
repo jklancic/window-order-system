@@ -1,7 +1,7 @@
 package xyz.blackmonster.window.converters;
 
 import xyz.blackmonster.window.models.Window;
-import xyz.blackmonster.window.responses.WindowWS;
+import xyz.blackmonster.window.responses.rest.WindowWS;
 
 /**
  * Converts WS cost objects from and to cost models

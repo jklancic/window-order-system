@@ -1,4 +1,4 @@
-package xyz.blackmonster.window.responses;
+package xyz.blackmonster.window.responses.rest;
 
 import javax.validation.constraints.NotNull;
 

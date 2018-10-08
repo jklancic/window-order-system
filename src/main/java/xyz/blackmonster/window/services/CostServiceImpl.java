@@ -85,6 +85,9 @@ public class CostServiceImpl implements CostService {
 		windowOrder.setValueAddedTaxPercentage(price.getPriceInfo().getValue());
 		cost.setValueAddedTaxPercentage(price.getPriceInfo().getValue());
 		cost.setTotalCost(calcTax(windowCost + serviceCost));
+		windowOrder.setWindowCost(cost.getWindowCost());
+		windowOrder.setServiceCost(cost.getServiceCost());
+		windowOrder.setTotalCost(cost.getTotalCost());
 
 		if (saveOrder) {
 			saveOrder(windowOrder);

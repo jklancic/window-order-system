@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import xyz.blackmonster.window.converters.CostConverter;
 import xyz.blackmonster.window.converters.OrderConverter;
 import xyz.blackmonster.window.models.Cost;
-import xyz.blackmonster.window.responses.CostWS;
-import xyz.blackmonster.window.responses.OrderWS;
+import xyz.blackmonster.window.responses.rest.CostWS;
+import xyz.blackmonster.window.responses.rest.OrderWS;
 import xyz.blackmonster.window.services.CostService;
 import xyz.blackmonster.window.services.OrderService;
 

@@ -2,10 +2,9 @@ package xyz.blackmonster.window.converters;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import xyz.blackmonster.window.models.WindowService;
-import xyz.blackmonster.window.responses.ServiceWS;
+import xyz.blackmonster.window.responses.rest.ServiceWS;
 import xyz.blackmonster.window.types.ServiceType;
 
 /**

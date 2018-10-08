@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>St. narocila</th>
+            <th>Stroski okna</th>
+            <th>Stroski storitve</th>
+            <th>DDV</th>
+            <th>Akcija</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${orders.empty}">
+                <td colspan="5">Seznam naročil je prazen</td>
+            </tr>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.orderNumber}">St. narocila</td>
+                <td th:text="${order.windowCost}">Stroski 1</td>
+                <td th:text="${order.serviceCost}">Stroski 2</td>
+                <td th:text="${order.totalCost}">Stroski 3</td>
+                <td><a th:href="@{'/admin/orders/' + ${order.uuid}}">Poglej</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

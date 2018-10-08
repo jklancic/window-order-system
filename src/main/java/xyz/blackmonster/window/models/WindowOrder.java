@@ -31,6 +31,12 @@ public class WindowOrder {
 	private String orderNumber;
 	@Column(name = "value_added_tax")
 	private double valueAddedTaxPercentage;
+	@Column(name = "window_cost")
+	private double windowCost;
+	@Column(name = "service_cost")
+	private double serviceCost;
+	@Column(name = "total_cost")
+	private double totalCost;
 
 	public String getUuid() {
 		return uuid;
@@ -78,5 +84,29 @@ public class WindowOrder {
 
 	public void setValueAddedTaxPercentage(double valueAddedTaxPercentage) {
 		this.valueAddedTaxPercentage = valueAddedTaxPercentage;
+	}
+
+	public double getWindowCost() {
+		return windowCost;
+	}
+
+	public void setWindowCost(double windowCost) {
+		this.windowCost = windowCost;
+	}
+
+	public double getServiceCost() {
+		return serviceCost;
+	}
+
+	public void setServiceCost(double serviceCost) {
+		this.serviceCost = serviceCost;
+	}
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
 	}
 }

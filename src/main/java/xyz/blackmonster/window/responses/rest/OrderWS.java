@@ -1,4 +1,4 @@
-package xyz.blackmonster.window.responses;
+package xyz.blackmonster.window.responses.rest;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
  */
 public class OrderWS {
 
+	private String uuid;
 	@NotNull
 	private List<WindowWS> windows;
 	@NotNull
