@@ -1,4 +1,4 @@
-package xyz.blackmonster.window.app;
+package xyz.blackmonster.window;
 
 import java.util.concurrent.Executor;
 
@@ -13,9 +13,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableAsync
 @SpringBootApplication
-@ComponentScan("xyz.blackmonster.window")
-@EnableJpaRepositories("xyz.blackmonster.window.repositories")
-@EntityScan("xyz.blackmonster.window.models")
 public class WindowAppApplication {
 
 	public static void main(String[] args) {

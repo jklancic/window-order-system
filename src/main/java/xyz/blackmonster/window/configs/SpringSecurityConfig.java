@@ -32,10 +32,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/", "/assets/**", "/api/order/calculate", "/api/order/**").permitAll()
-				.antMatchers("/admin/**").hasRole("ADMIN");
-//			.and()
-//			.formLogin()
-//				.loginPage("/login").failureUrl("/login-error");
+				.antMatchers("/admin/**").hasRole("ADMIN")
+			.and()
+			.formLogin()
+			.loginPage("/login.html")
+			.defaultSuccessUrl("/admin/orders.html")
+			.failureUrl("/login.html?error=true")
+			.and()
+			.logout().logoutSuccessUrl("/");
 	}
 
 	@Bean
