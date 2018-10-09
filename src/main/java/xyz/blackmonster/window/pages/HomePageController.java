@@ -11,5 +11,8 @@ public class HomePageController {
 		return "index";
 	}
 
-
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
 }
